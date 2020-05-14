@@ -1,12 +1,9 @@
 <template>
   <div>
+    <h3>{{title}}</h3>
     <span>Wochentag</span>
     <select name= "Wochentag" id="selectBox">
-      <option>Montag</option>
-      <option>Dienstag</option>
-      <option>Mittwoch</option>
-      <option>Donnerstag</option>
-      <option>Freitag</option>
+      <option v-for="day in days" :key="day">{{days}}</option>
     </select>
   </div>
  
@@ -14,10 +11,13 @@
 <script>
 
 export default {
+    props: {
+      days: Array,
+      title: String,
+    },
+    name: "Dropdown"      
+  };
   
-    name: "Dropdown",
-    props: {data: String}
-  }
 </script>
 
 <style >

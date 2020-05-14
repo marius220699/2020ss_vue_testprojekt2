@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>Liste</h3>
+    {{mahlzeiten}}
+    <div class="mahlzeit" v-for="meal in mahlzeiten" :key="meal"></div>
     <table>
       <tr>category</tr>
       <tr>day</tr>
@@ -13,14 +16,16 @@
       
     </table>
   </div>
-  </template>
+</template>
 <script>
 
-  export default {
+ export default {
+    props: {
+      mahlzeiten: Array
+    },
+    name: "List"      
+  };
   
-    name: "List",
-    props: {data: String}
-  }
 </script>
 
 <style>

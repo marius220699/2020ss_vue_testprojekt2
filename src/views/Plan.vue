@@ -1,9 +1,8 @@
 <template>
    <div>
      <h1>test</h1>
-     <Dropdown></Dropdown>
-     <br>
-     <List></List>
+     <Dropdown : days="loadedData.data"></Dropdown>
+     <List : mahlzeiten="loadedData.data"></List>
    </div>
 </template>
 
@@ -27,9 +26,11 @@ export default {
     }
   },
   mounted(){
-    axios.get("http://foaas.com/linus/Test/me")
+    axios.get("http://localhost:3000/api/getData")
     .then(response => {
-      this.loadedData = response.data
+      this.loadedData = response.data;
+      this.DropdownData = this.loadedData.map((essen)=> essen,days);
+      this.DropdownData = this.DropdownData.filter((a, b)=> this.DropdownData.indexof(a)=== b)
     })
     .catch ( err => { 
       console.log(err)
