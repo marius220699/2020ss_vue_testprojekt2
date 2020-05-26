@@ -1,8 +1,8 @@
 <template>
    <div>
      <h1>test</h1>
-     <Dropdown : days="loadedData.data"></Dropdown>
-     <List : mahlzeiten="loadedData.data"></List>
+     <Dropdown v-on:select="selectDay($event)" :days="days" :selectedDay="selectedDay" />
+      <List :tableData="loadedData.filter(essen => essen.day === this.selectedDay)" />
    </div>
 </template>
 
@@ -22,21 +22,31 @@ export default {
   
   data: function(){
     return {
-      loadedData: 'no data loaded',
-    }
+      loadedData: [],
+      days: [],
+      selectedDay: undefined
+    };
   },
+
+  methods: {
+    selectDay: function(day) {
+      this.selectedDay = day;
+    },
+  },
+
   mounted(){
     axios.get("http://localhost:3000/api/getData")
     .then(response => {
       this.loadedData = response.data;
-      this.DropdownData = this.loadedData.map((essen)=> essen,days);
-      this.DropdownData = this.DropdownData.filter((a, b)=> this.DropdownData.indexof(a)=== b)
+      this.DropdownData = this.loadedData.map((essen)=> essen.day);
+      this.days = this.days.filter((a, b) => this.days.indexOf(a) === b);
+      this.selectedDay = this.days[0];
     })
     .catch ( err => { 
       console.log(err)
-    })
+    });
   },
-}
+};
 
 
 </script>
