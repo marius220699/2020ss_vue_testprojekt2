@@ -11,12 +11,27 @@
 <script>
 
 export default {
-    props: {
-      days: Array,
-      title: String,
+  name: "Dropdown",
+  data() {
+    return {
+      dayNames: {
+        Mo: "Montag",
+        Di: "Dienstag",
+        Mi: "Mittwoch",
+        Do: "Donnerstag",
+        Fr: "Freitag"
+      }
+    };
+  },
+  props: {
+    selectedDay: {
+      type: String
     },
-    name: "Dropdown"      
-  };
+    days: {
+      type: Array
+    }
+  }
+};
   
 </script>
 
