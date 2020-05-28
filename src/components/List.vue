@@ -1,36 +1,29 @@
 <template>
-  <div>
-    <h3>Liste</h3>
-    {{mahlzeiten}}
-    <table id= "table">
-      <tr>
-      <th>category</th>
-      <th>day</th>
-      <th>cost</th>
-      <th>contentInformation</th>
-      <th>downvotes</th>
-      <th>id</th>
-      <th>labels</th>
-      <th>name</th>
-      <th>upvotes</th>
-      </tr>
-
-      <meal v-for="meal in tableData" :meal="meal" :key="meal.id" />
-    </table>
-  </div>
+  <li>
+    <h5>{{data.category}}</h5>
+    <hr/>
+    <h3>{{data.name}}</h3>
+    {{data.cost.students}} €<br/>
+    <Meal class= "mahlzeiten" v-for= "meal in mahlzeiten" :key="meal" :data="meal"/>
+  </li>
 </template>
 <script>
-import Meal from "../components/Meal.vue";
-export default {
-  name: "List",
-  components: {
-    Meal,
-  },
-  props: {
-    tableData: Array
+
+  import Meal from "../components/Meal.vue" 
+
+  export default {
+    props: {
+      mahlzeiten: Array
+    },
+    components: {
+      Meal
+    },
+    name: "List"
   }
-};
+
 </script>
+
+
 
 <style>
 

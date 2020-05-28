@@ -1,7 +1,9 @@
 <template>
-  <tr>
-    <td>{{meal.category}}</td>
-    <td>{{meal.name}}</td>
+  <div>
+    <h5>{{meal.category}}</h5>
+    <hr/>
+    <h3>{{meal.name}}</h3>
+    {{data.cost.students}} €<br/>
     <td>
       <p v-for="content in meal.contentInformation" :key="content">{{content}}</p>
     </td>
@@ -9,7 +11,7 @@
     <td>
       <p v-for="k in Object.keys(meal.cost)" :key="k">{{costCategories[k] }}: {{ meal.cost[k]}}</p>
     </td>
-  </tr>
+  </div>
 </template>
 <script>
 export default {
