@@ -20,7 +20,7 @@
 
   export default {
     props: {
-      mahlzeiten: Array
+      tableData: Array
     },
     components: {
       Meal
@@ -28,7 +28,7 @@
     methods: {
     getCategories() {
       const reg = /([a-zA-Z]+)[0-9]*/;
-      const allCategories = this.mahlzeiten
+      const allCategories = this.tableData
         .map(essen => essen.category)
         .map(s => s.match(reg)[1])
     console.log(allCategories)
