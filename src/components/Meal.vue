@@ -14,6 +14,8 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "Meal",
   data() {
@@ -22,8 +24,21 @@ export default {
         employees: "Angestellte",
         guests: "Gäste",
         students: "Studenten"
-      }
+      },
+      liked: false,
+      disliked: false
     };
+  },
+  methods: {
+    postLike(id) {
+      this.liked = !this.liked;
+      axios.post(`http://localhost:3000/api/like/${id}`)
+      this.disliked = this.disliked && !this.liked;
+    },
+    postDislike() {
+      this.disliked = !this.disliked;
+      this.liked = this.liked && !this.disliked;
+    }
   },
   props: {
     meal: Object

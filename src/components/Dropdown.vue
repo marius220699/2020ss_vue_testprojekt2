@@ -1,19 +1,33 @@
 <template>
-  <div>
-    <span>Wochentag</span>
-  <select name="Wochentag" id="selectBox">
-          <option v-for="day in days" :key="day">{{day}}</option>
-        </select>
-  </div>
+  <select v-on:change="$emit('select', $event.target.value)" name="wochentag" id="select">
+    <option v-for="day in days" :value="day" :selected="selectedDay === day" :key="day">{{dayNames[day]}}</option>
+  </select>
 </template>
 
 <script>
 export default {
   name: 'Dropdown',
-  props: {
-    days: Array
+    data() {
+    return {
+      dayNames: {
+        Mo: "Montag",
+        Di: "Dienstag",
+        Mi: "Mittwoch",
+        Do: "Donnerstag",
+        Fr: "Freitag",
+      }
+   };
+ },
+props: {
+    selectedDay: {
+      type: String
+    },
+    days: {
+      type: Array
+    }
   }
-}
+};
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
