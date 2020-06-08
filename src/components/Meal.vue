@@ -3,14 +3,13 @@
     <h5>{{meal.category}}</h5>
     <hr/>
     <h3>{{meal.name}}</h3>
-    {{data.cost.students}} €<br/>
-    <td>
-      <p v-for="content in meal.contentInformation" :key="content">{{content}}</p>
-    </td>
+    {{meal.cost.students}} €<br/>
+    <p class="ci" v-for="ci in meal.contentInformation" :key="ci"><small>{{ci}}</small></p>
     <td>{{meal.labels.split(',').join(', ')}}</td>
     <td>
       <p v-for="k in Object.keys(meal.cost)" :key="k">{{costCategories[k] }}: {{ meal.cost[k]}}</p>
     </td>
+    <b-button v-on:click="postLike(meal.id)">test</b-button>
   </div>
 </template>
 <script>

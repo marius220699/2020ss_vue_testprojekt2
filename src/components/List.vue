@@ -1,5 +1,5 @@
 <template>
-  <b-row class="cols">
+  <!--<b-row class="cols">
     <b-col v-for="category in getCategories()" :key="category">
       <b-card
         v-for="meal in tableData.filter(m => m.category.startsWith(category))"
@@ -12,7 +12,14 @@
         </b-card-text>
       </b-card>
     </b-col>
-  </b-row>
+  </b-row>-->
+  <b-card-group columns>
+    <b-card v-for="meal in tableData" :key="meal.id" img-src="https://picsum.photos/200">
+      <b-card-text>
+        <Meal :meal='meal'></Meal>
+      </b-card-text>
+    </b-card>
+  </b-card-group>
 </template>
 <script>
 

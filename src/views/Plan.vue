@@ -7,19 +7,25 @@
           <span id="lead">Mensakarte</span>
         </div>
       </div>
+      <!--
       <div class="datepicker">
         <label for="example-datepicker"></label>
         <b-form-datepicker value-as-date id="example-datepicker" v-model="selectedDay" class="mb-2"></b-form-datepicker>
       </div>
+      -->
     </div>
+    <dropdown :days="days"/>
     <list
-      :tableData="loadedData.filter(essen => this.selectedDay && (this.day(essen.day) === this.selectedDay.getDay()))"
+      :tableData="loadedData"
     />
+    <!--
+      <list :tableData="loadedData.filter(essen => this.selectedDay && (this.days[essen.day] === this.selectedDay))"/>
+    -->
    </div>
 </template>
 
 <script>
-//import Dropdown from "../components/Dropdown.vue"
+import Dropdown from "../components/Dropdown.vue"
 import List from "../components/List.vue"
 import axios from 'axios'
 
@@ -29,14 +35,14 @@ export default {
     msg: String
   },
   components:{
-     List,
+    List, Dropdown
   },
   
   data: function(){
     return {
       loadedData: [],
       days: [],
-      selectedDay: undefined
+      selectedDay: 'Di'
     };
   },
 
